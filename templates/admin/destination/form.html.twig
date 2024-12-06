@@ -1,0 +1,48 @@
+<div class="card shadow-sm">
+    <div class="card-body">
+        {{ form_start(form) }}
+
+        <div class="mb-3">
+            {{ form_label(form.name, null, { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.name, { 'attr': { 'class': 'form-control' } }) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.description, null, { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.description, { 'attr': { 'class': 'form-control', 'rows': 5 } }) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.price, null, { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.price, { 'attr': { 'class': 'form-control' } }) }}
+            {{ form_errors(form.price) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.duration, null, { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.duration, { 'attr': { 'class': 'form-control' } }) }}
+            {{ form_errors(form.duration) }}
+        </div>
+
+        {% if destination is defined and destination.image %}
+            <div class="mb-3">
+                <label class="form-label">Current Image</label>
+                <div>
+                    <img src="{{ asset('uploads/images/' ~ destination.image) }}" alt="{{ destination.name }}" class="img-thumbnail" width="150">
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="mb-3">
+            {{ form_label(form.image, null, { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(form.image, { 'attr': { 'class': 'form-control' } }) }}
+            {{ form_errors(form.image) }}
+        </div>
+
+        <button class="btn btn-{{ destination is defined ? 'primary' : 'success' }} w-100">{{ destination is defined ? 'Update' : 'Save' }}</button>
+
+        {{ form_end(form) }}
+    </div>
+</div>

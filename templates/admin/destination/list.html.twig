@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Destination List{% endblock %}
+
+{% block body %}
+    <h1>Destination List</h1>
+    <a href="{{ path('admin_destination_new') }}" class="btn btn-primary">Add New Destination</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Duration</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for destination in destinations %}
+            <tr>
+                <td>{{ destination.id }}</td>
+                <td>{{ destination.name }}</td>
+                <td>{{ destination.description }}</td>
+                <td>{{ destination.price }}</td>
+                <td>{{ destination.duration }}</td>
+                <td>
+                    {% if destination.image starts with 'http' %}
+                        <img width="100" src="{{ destination.image }}" alt="{{ destination.name }}" class="img-fluid">
+                    {% else %}
+                        <img width="100" src="{{ asset('uploads/images/' ~ destination.image) }}" alt="{{ destination.name }}" class="img-fluid">
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('admin_destination_edit', { id: destination.id }) }}" class="btn btn-warning btn-sm">Edit</a>
+                    {% include 'admin/destination/delete_form.html.twig' with { destination: destination } %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No destinations found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

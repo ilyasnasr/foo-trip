@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Add New Destination{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="mb-4">Add New Destination</h1>
+                {% include 'admin/destination/form.html.twig' %}
+                <div class="mt-3 text-center">
+                    <a href="{{ path('admin_destination_list') }}" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
